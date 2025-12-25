@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Knight Online sınıfları - Warrior, Rogue, Mage, Priest, Kurian. Detaylı skill bilgileri, build önerileri ve sınıf rehberleri.">
+    <meta name="keywords" content="knight online sınıflar, ko warrior, ko rogue, ko mage, ko priest, ko kurian, knight online class guide">
+    <title>Sınıflar - Knight Online Wiki</title>
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: #8b0000;
+            --secondary: #c41e3a;
+            --accent: #d4af37;
+            --dark: #0d0d0d;
+            --dark-bg: #1a1a1a;
+            --card-bg: #242424;
+            --text: #e0e0e0;
+            --text-muted: #999;
+            --border: #333;
+            --hover: #2a2a2a;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0d0d0d 0%, #1a1a1a 100%);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--dark) 0%, var(--dark-bg) 100%);
+            border-bottom: 2px solid var(--primary);
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(139, 0, 0, 0.3);
+        }
+        
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--accent);
+            text-decoration: none;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            letter-spacing: 1px;
+        }
+        
+        .logo i {
+            color: var(--primary);
+            margin-right: 10px;
+        }
+        
+        nav {
+            display: flex;
+            gap: 30px;
+        }
+        
+        nav a {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 0.95rem;
+            padding: 8px 16px;
+            border-radius: 4px;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 500;
+        }
+        
+        nav a:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        nav a.active {
+            background: var(--primary);
+            color: white;
+        }
+        
+        /* Breadcrumb */
+        .breadcrumb {
+            max-width: 1400px;
+            margin: 20px auto;
+            padding: 0 20px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        
+        .breadcrumb a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+        
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Page Header */
+        .page-header {
+            max-width: 1400px;
+            margin: 30px auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+        
+        .page-header h1 {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            letter-spacing: 2px;
+        }
+        
+        .page-header p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        /* Main Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        /* Class Grid */
+        .class-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .class-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.4s;
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .class-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(139, 0, 0, 0.4);
+            border-color: var(--primary);
+        }
+        
+        .class-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .class-card:hover::before {
+            opacity: 1;
+        }
+        
+        .class-header {
+            padding: 30px;
+            text-align: center;
+            background: linear-gradient(135deg, var(--dark-bg), var(--card-bg));
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .class-icon {
+            font-size: 4rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+            transition: all 0.3s;
+        }
+        
+        .class-card:hover .class-icon {
+            color: var(--accent);
+            transform: scale(1.1);
+        }
+        
+        .class-name {
+            font-size: 1.8rem;
+            color: var(--accent);
+            margin-bottom: 8px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        
+        .class-subtitle {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            font-style: italic;
+        }
+        
+        .class-body {
+            padding: 25px;
+        }
+        
+        .class-description {
+            color: var(--text);
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+        
+        .class-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+        }
+        
+        .stat-item i {
+            color: var(--primary);
+            width: 20px;
+        }
+        
+        .class-features {
+            margin-bottom: 20px;
+        }
+        
+        .feature-tag {
+            display: inline-block;
+            padding: 5px 12px;
+            background: var(--dark-bg);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin: 4px;
+            color: var(--text-muted);
+        }
+        
+        .class-footer {
+            padding: 0 25px 25px;
+        }
+        
+        .class-btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+        
+        .class-btn:hover {
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            box-shadow: 0 5px 15px rgba(196, 30, 58, 0.4);
+        }
+        
+        /* Comparison Table */
+        .comparison-section {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 40px;
+            margin-top: 50px;
+        }
+        
+        .comparison-section h2 {
+            color: var(--accent);
+            font-size: 2rem;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .comparison-table {
+            overflow-x: auto;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        th {
+            background: var(--dark-bg);
+            color: var(--accent);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+        
+        td {
+            color: var(--text);
+        }
+        
+        tr:hover {
+            background: var(--hover);
+        }
+        
+        .rating {
+            display: flex;
+            gap: 3px;
+        }
+        
+        .rating i {
+            color: var(--accent);
+            font-size: 0.9rem;
+        }
+        
+        .rating i.empty {
+            color: var(--border);
+        }
+        
+        /* Ad Container */
+        .ad-container {
+            background: var(--card-bg);
+            border: 2px dashed var(--border);
+            padding: 30px;
+            text-align: center;
+            margin: 50px 0;
+            border-radius: 8px;
+            min-height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            border-top: 2px solid var(--primary);
+            padding: 40px 20px 20px;
+            margin-top: 80px;
+        }
+        
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+        
+        .footer-section h3 {
+            color: var(--accent);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section a {
+            color: var(--text-muted);
+            text-decoration: none;
+            display: block;
+            padding: 8px 0;
+            transition: color 0.3s;
+        }
+        
+        .footer-section a:hover {
+            color: var(--accent);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            nav {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 10px;
+            }
+            
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            
+            .class-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .comparison-section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <a href="/" class="logo">
+                <i class="fas fa-shield-alt"></i>KNIGHT ONLINE WIKI
+            </a>
+            <nav>
+                <a href="/" class="active"><i class="fas fa-home"></i> Ana Sayfa</a>
+                <a href="/siniflar/"><i class="fas fa-users"></i> Sınıflar</a>
+                <a href="/itemler/"><i class="fas fa-gem"></i> İtemler</a>
+                <a href="/questler/"><i class="fas fa-scroll"></i> Questler</a>
+                <a href="/rehberler/"><i class="fas fa-book"></i> Rehberler</a>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb">
+        <a href="/">Ana Sayfa</a> / <span>Sınıflar</span>
+    </nav>
+    
+    <!-- Page Header -->
+    <div class="page-header">
+        <h1>KNIGHT ONLINE SINIFLARI</h1>
+        <p>El Morad ve Karus uluslarının güçlü savaşçıları. Her sınıf kendine özgü yetenekler, güçlü ve zayıf yönleriyle savaş alanında farklı roller üstlenir.</p>
+    </div>
+    
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Class Grid -->
+        <div class="class-grid">
+            <!-- Warrior -->
+            <div class="class-card" onclick="window.location.href='/siniflar/warrior.html'">
+                <div class="class-header">
+                    <div class="class-icon">
+                        <i class="fas fa-khanda"></i>
+                    </div>
+                    <h2 class="class-name">WARRIOR</h2>
+                    <p class="class-subtitle">Savaşçı</p>
+                </div>
+                <div class="class-body">
+                    <p class="class-description">
+                        Ön cephede görev alan, yüksek dayanıklılık ve fiziksel güce sahip sınıf. Ağır zırh kullanımı ve yakın dövüş konusunda uzman.
+                    </p>
+                    <div class="class-stats">
+                        <div class="stat-item">
+                            <i class="fas fa-fist-raised"></i>
+                            <span>Yüksek Fiziksel Hasar</span>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-shield"></i>
+                            <span>Yüksek Savunma</span>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-heart"></i>
+                            <span>Yüksek HP</span>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-bolt"></i>
+                            <span>Orta Hız</span>
+                        </div>
+                    </div>
+                    <div class="class-features">
+                        <span class="feature-tag">Tank</span>
+                        <span class="feature-tag">Melee DPS</span>
+                        <span class="feature-tag">PvP</span>
+                        <span class="feature-tag">PvE</span>
+                    </div>
+                </div>
+                <div class="class-footer">
+                    <a href="/siniflar/warrior.html" class="class-btn">Detaylı İncele</a>
+                </div>
+            </div>
+            
+            <!-- Rogue -->
+            <div class="class-card" onclick="window.location.href='/siniflar/rogue.html'">
+                <div class="class-header">
+                    <div class="class-icon">
+                        <i class="fas fa-user-ninja"></i>
+                    </div>
+                    <h2 class="class-name">ROGUE</h2>
+                    <p class="class-subtitle">Hırsız / Okçu</p>
+                </div>
+                <div class="class-body">
+                    <p class="class-description">
+                        Hızlı ve çevik, kritik vuruş ustası. Gölgelerden saldırarak düşmanları şaşırtır. Uzak ve yakın mesafe saldırılarında başarılı.
+                    </p>
+                    <div class="class-stats">
+                        <div class="stat-item">
+                            <i class="fas fa-bullseye"></i>
+                            <span>Yüksek Kritik Şansı</span>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-running"></i>
+                            <span>Yüksek Hız</span>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-crosshairs"></i>
+                            <span>Uzak Mesafe</span>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-user-secret"></i>
+                            <span>Stealth</span>
+                        </div>
+                    </div>
+                    <div class="class-features">
+                        <span class="feature-tag">Assassin</span>
+                        <span class="feature-tag">Archer</span>
+                        <span class="feature-tag">DPS</span>
+                        <span class="feature-tag">Kritik</span>
+                    </div>
+                </div>
+                <div class="class-footer">
+                    <a href="/siniflar/rogue.html" class="class-btn">Detaylı İncele</a>
+                </div>
+            </div>
+            
+            <!-- Mage -->
+            <div class="class-card" onclick="window.location.href='/siniflar/mage.html'">
+                <div class="class-header">
+                    <div class="class-icon">
+                        <i class="fas fa-hat-wizard"></i>
+                    </div>
+                    <h2 class="class-name">MAGE</h2>
+                    <p class="class-subtitle">Büyücü</p>
+                </div>
+                <div class="class-body">
+                    <p class="class-description">
+                        Güçlü elementel büyüler kullanan sınıf. Uzak mesafeden yıkıcı hasar verir. Area of Effect (AOE) saldırılarıyla grupları yok eder.
+                    </p>
+                    <div class="class-stats">
+                        <div class="stat-item">
+                            <i class="fas fa-fire"></i>
+                            <span>Yüksek Büyü Hasarı</span>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-users-slash"></i>
+                            <span>AOE Hasar</span>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-tint"></i>
+                            <span>Yüksek Mana</span>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <span>Düşük Savunma</span>
+                        </div>
+                    </div>
+                    <div class="class-features">
+                        <span class="feature-tag">Mage DPS</span>
+                        <span class="feature-tag">AOE</span>
+                        <span class="feature-tag">Elemental</span>
+                        <span class="feature-tag">Farming</span>
+                    </div>
+                </div>
+                <div class="class-footer">
+                    <a href="/siniflar/mage.html" class="class-btn">Detaylı İncele</a>
+                </div>
+            </div>
+            
+            <!-- Priest -->
+            <div class="class-card" onclick="window.location.href='/siniflar/priest.html'">
+                <div class="class-header">
+                    <div class="class-icon">
+                        <i class="fas fa-hands"></i>
+                    </div>
+                    <h2 class="class-name">PRIEST</h2>
+                    <p class="class-subtitle">Rahip</p>
+                </div>
+                <div class="class-body">
+                    <p class="class-description">
+                        Takımın can damarı. İyileştirme ve koruma büyüleriyle müttefiklerini destekler. Buff ve resurrect yetenekleriyle vazgeçilmez.
+                    </p>
+                    <div class="class-stats">
+                        <div class="stat-item">
+                            <i class="fas fa-heart-pulse"></i>
+                            <span>Güçlü İyileştirme</span>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-shield-halved"></i>
+                            <span>Koruma Büyüleri</span>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-hand-sparkles"></i>
+                            <span>Buff/Debuff</span>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-skull-crossbones"></i>
+                            <span>Resurrect</span>
+                        </div>
+                    </div>
+                    <div class="class-features">
+                        <span class="feature-tag">Healer</span>
+                        <span class="feature-tag">Support</span>
+                        <span class="feature-tag">Buffer</span>
+                        <span class="feature-tag">Rezzer</span>
+                    </div>
+                </div>
+                <div class="class-footer">
+                    <a href="/siniflar/priest.html" class="class-btn">Detaylı İncele</a>
+                </div>
+            </div>
+            
+            <!-- Kurian -->
+            <div class="class-card" onclick="window.location.href='/siniflar/kurian.html'">
+                <div class="class-header">
+                    <div class="class-icon">
+                        <i class="fas fa-dragon"></i>
+                    </div>
+                    <h2 class="class-name">KURIAN</h2>
+                    <p class="class-subtitle">Karanlık Savaşçı</p>
+                </div>
+                <div class="class-body">
+                    <p class="class-description">
+                        Karanlık güçleri kullanarak savaşan hibrit sınıf. HP emmek, debuff atmak ve yüksek savunma ile tanınır. Karus ulusuna özel.
+                    </p>
+                    <div class="class-stats">
+                        <div class="stat-item">
+                            <i class="fas fa-vampire-bite"></i>
+                            <span>HP Drain</span>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-skull"></i>
+                            <span>Debuff Master</span>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-shield-virus"></i>
+                            <span>Yüksek Dayanıklılık</span>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-moon"></i>
+                            <span>Karanlık Büyüler</span>
+                        </div>
+                    </div>
+                    <div class="class-features">
+                        <span class="feature-tag">Hybrid</span>
+                        <span class="feature-tag">Debuffer</span>
+                        <span class="feature-tag">Tank</span>
+                        <span class="feature-tag">Karus Only</span>
+                    </div>
+                </div>
+                <div class="class-footer">
+                    <a href="/siniflar/kurian.html" class="class-btn">Detaylı İncele</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Ad Container -->
+        <div class="ad-container">
+            <!-- Google AdSense Kodu Buraya -->
+            [ Reklam Alanı - 728x90 Leaderboard ]
+        </div>
+        
+        <!-- Comparison Table -->
+        <div class="comparison-section">
+            <h2>SINIF KARŞILAŞTIRMA TABLOSU</h2>
+            <div class="comparison-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Sınıf</th>
+                            <th>Fiziksel Hasar</th>
+                            <th>Büyü Hasarı</th>
+                            <th>Savunma</th>
+                            <th>Hız</th>
+                            <th>Destek</th>
+                            <th>Zorluk</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Warrior</strong></td>
+                            <td>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="rating">
+                                    <i class="fas fa-star empty"></i>
+                                    <i class="fas fa-star empty"></i>
+                                    <i class="fas fa-star empty"></i>
+                                    <i class="fas fa-star empty"></i>
+                                    <i class="fas fa-star empty"></i>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star empty"></i>
+                                    <i class="fas fa-star empty"></i>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star empty"></i>
+                                    <i class="fas fa-star empty"></i>
+                                    <i class="fas fa-star empty"></i>
+                                    <i class="fas fa-star empty"></i>
+                                </div>
+                            </td>
+                            <td>Kolay</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Rogue</strong></td>
+                            <td>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star empty"></i>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="rating">
+                                    <i class="fas fa-star empty"></i>
+                                    <i class="fas fa-star empty"></i>
+                                    <i class="fas fa-star empty"></i>
+                                    <i class="fas fa-star empty"></i>
+                                    <i class="fas fa-star empty"></i>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star empty"></i>
+                                    <i class="fas fa-star empty"></i>
+                                    <i class="fas fa-star empty"></i>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="rating">
+                                    <i class="fas fa-star empty"></i>
+                                    <i class
